@@ -45,10 +45,15 @@ export default {
     }
   },
   methods: {
-    submit(){
-      console.log(this.title)
-      console.log(this.description)
-      console.log(this.deadline)
+    submit() {
+      const item = {
+        title: this.title,
+        description: this.description,
+        deadline: this.deadline,
+        done: false
+      }
+
+      this.$emit("add-item", item)
     }
   }
 }

@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div class="mt-3">
-      <AddTodoItemCard />
+      <AddTodoItemCard @add-item="handleAddItem"/>
     </div>
   </div>
 </template>
@@ -11,7 +11,17 @@ import AddTodoItemCard from "@/components/AddTodoItemCard";
 
 export default {
   name: "OverviewPage",
-  components: {AddTodoItemCard}
+  components: {AddTodoItemCard},
+  data() {
+    return {
+      items: []
+    }
+  },
+  methods: {
+    handleAddItem(item) {
+      console.log(item)
+    }
+  }
 }
 </script>
 
