@@ -9,7 +9,7 @@
           <div class="form-group">
             <label for="titleInput">Title</label>
             <input type="text" class="form-control" id="titleInput" aria-describedby="emailHelp"
-                   placeholder="Enter title" v-model="title">
+                   placeholder="Enter title" v-model="title" required>
             <small id="emailHelp" class="form-text text-muted">What do you want to get done?</small>
           </div>
           <div class="form-group">
@@ -19,7 +19,7 @@
           </div>
           <div class="form-group">
             <label for="dateInput">Deadline</label>
-            <input type="date" class="form-control" id="dateInput" placeholder="Date Input" v-model="deadline">
+            <input type="date" class="form-control" id="dateInput" placeholder="Date Input" v-model="deadline" required>
           </div>
           <button type="submit" class="btn btn-primary mr-2">Submit</button>
           <button type="submit" class="btn btn-outlined-secondary" @click="showInput = false">Cancel</button>
@@ -41,7 +41,7 @@ export default {
       showInput: false,
       title: "",
       description: "",
-      deadline: new Date()
+      deadline: new Date().toISOString().split('T')[0]
     }
   },
   methods: {
