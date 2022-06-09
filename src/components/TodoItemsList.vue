@@ -1,6 +1,6 @@
 <template>
     <div class="list-group">
-        <TodoListItem v-for="item in items" :key="item.id" :item="item"/>
+        <TodoListItem v-for="item in items" :key="item.id" :item="item" @done-changed="() => onDoneChanged(item.id)" @delete-item="() => onDeleteItem(item.id)"/>
     </div>
 </template>
 
@@ -9,7 +9,7 @@ import TodoListItem from "@/components/TodoListItem";
 
 export default {
     name: "TodoItemsList",
-    components: [TodoListItem],
+    components: { TodoListItem },
     props: {
         items: {
             type: Array,
@@ -17,8 +17,11 @@ export default {
         }
     },
     methods: {
-        descriptionOfItem(item) {
-            return item.description || "No description"
+        onDoneChanged(id) {
+            this.$emit("done-changed", id)
+        },
+        onDeleteItem(id) {
+            this.$emit("delete-item", id)
         }
     }
 }

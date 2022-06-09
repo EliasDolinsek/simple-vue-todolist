@@ -38,6 +38,7 @@ export default {
   name: "AddTodoItemCard",
   data() {
     return {
+      id: 2,
       showInput: false,
       title: "",
       description: "",
@@ -45,6 +46,10 @@ export default {
     }
   },
   methods: {
+    clearInputs(){
+      this.title = ""
+      this.description = ""
+    },
     submit() {
       const item = {
         title: this.title,
@@ -54,6 +59,9 @@ export default {
       }
 
       this.$emit("add-item", item)
+      
+      this.showInput = false
+      this.clearInputs()
     }
   }
 }
