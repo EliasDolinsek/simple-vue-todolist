@@ -8,13 +8,13 @@
         <form @submit.prevent="submit">
           <div class="form-group">
             <label for="titleInput">Title</label>
-            <input type="text" class="form-control" id="titleInput" aria-describedby="emailHelp"
+            <input type="text" class="form-control" id="titleInput"
                    placeholder="Enter title" v-model="title" required>
             <small id="emailHelp" class="form-text text-muted">What do you want to get done?</small>
           </div>
           <div class="form-group">
             <label for="descriptionInput">Description</label>
-            <input type="text" class="form-control" id="descriptionInput" aria-describedby="emailHelp"
+            <input type="text" class="form-control" id="descriptionInput"
                    placeholder="Enter description" v-model="description">
           </div>
           <div class="form-group">
@@ -22,7 +22,7 @@
             <input type="date" class="form-control" id="dateInput" placeholder="Date Input" v-model="deadline" required>
           </div>
           <button type="submit" class="btn btn-primary mr-2">Submit</button>
-          <button type="submit" class="btn btn-outlined-secondary" @click="showInput = false">Cancel</button>
+          <button class="btn btn-outlined-secondary" @click="showInput = false">Cancel</button>
         </form>
       </div>
       <div v-else>
