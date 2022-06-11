@@ -26,7 +26,7 @@
       <div class="d-flex w-100 justify-content-between">
         <div class="form-check">
           <input class="form-check-input" type="checkbox" :checked="item.done" @change="onDoneChanged" id="itemDone">
-          <label class="title mb-1 h5">{{ item.title }}</label>
+          <label :class="{'title': true, 'mb-1': true, 'h5': true, 'item-done':item.done}">{{ item.title }}</label>
         </div>
         <TodoListItemActions @edit="editMode = true" @delete="onDelete"/>
       </div>
@@ -74,3 +74,9 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.item-done {
+  text-decoration: line-through;
+}
+</style>
