@@ -34,6 +34,7 @@
 </template>
 
 <script>
+
 export default {
   name: "AddTodoItemCard",
   data() {
@@ -46,7 +47,7 @@ export default {
     }
   },
   methods: {
-    clearInputs(){
+    clearInputs() {
       this.title = ""
       this.description = ""
     },
@@ -58,8 +59,8 @@ export default {
         done: false
       }
 
-      this.$emit("add-item", item)
-      
+      this.$store.commit("addItem", item)
+
       this.showInput = false
       this.clearInputs()
     }

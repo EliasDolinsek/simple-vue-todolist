@@ -1,28 +1,16 @@
 <template>
-    <div class="list-group">
-        <TodoListItem v-for="item in items" :key="item.id" :item="item" @done-changed="() => onDoneChanged(item.id)" @delete-item="() => onDeleteItem(item.id)"/>
-    </div>
+  <div class="list-group">
+    <TodoListItem v-for="item in itemsSortedByDate" :key="item.id" :item="item"/>
+  </div>
 </template>
 
 <script>
 import TodoListItem from "@/components/TodoListItem";
+import {mapGetters} from "vuex";
 
 export default {
-    name: "TodoItemsList",
-    components: { TodoListItem },
-    props: {
-        items: {
-            type: Array,
-            required: true
-        }
-    },
-    methods: {
-        onDoneChanged(id) {
-            this.$emit("done-changed", id)
-        },
-        onDeleteItem(id) {
-            this.$emit("delete-item", id)
-        }
-    }
+  name: "TodoItemsList",
+  components: {TodoListItem},
+  computed: mapGetters(["itemsSortedByDate"])
 }
 </script>
