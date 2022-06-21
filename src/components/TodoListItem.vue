@@ -25,8 +25,8 @@
     <div v-else>
       <div class="d-flex w-100 justify-content-between">
         <div class="form-check">
-          <input class="form-check-input" type="checkbox" :checked="item.done" @change="onDoneChanged" id="itemDone">
-          <label :class="{'title': true, 'mb-1': true, 'h5': true, 'item-done':item.done}">{{ item.title }}</label>
+          <input class="form-check-input" type="checkbox" v-model="done" @change="onDoneChanged" id="itemDone">
+          <label :class="{'title': true, 'mb-1': true, 'h5': true, 'item-done':done}">{{ item.title }}</label>
         </div>
         <TodoListItemActions @edit="editMode = true" @delete="onDelete"/>
       </div>
@@ -53,7 +53,13 @@ export default {
       editMode: false,
       title: this.item.title,
       description: this.item.description,
-      deadline: this.item.deadline
+      deadline: this.item.deadline,
+      done: this.item.done
+    }
+  },
+  computed: {
+    updatedItem(){
+      return {id: this.item.id, title: this.title, description: this.description, deadline: this.deadline, done: this.done}
     }
   },
   methods: {
@@ -61,14 +67,13 @@ export default {
       return item.description || "No description"
     },
     onDoneChanged() {
-      this.$store.commit("toggleDone", this.item.id)
+      this.$store.commit("updateItem", this.updatedItem)
     },
     onDelete() {
       this.$store.commit("deleteItem", this.item.id)
     },
     onUpdate() {
-      const item = {id: this.item.id, title: this.title, description: this.description, deadline: this.deadline}
-      this.$store.commit("updateItem", item)
+      this.$store.commit("updateItem", this.updatedItem)
       this.editMode = false
     }
   }

@@ -19,12 +19,16 @@
 <script>
 import AddTodoItemCard from "@/components/AddTodoItemCard";
 import TodoItemsList from "@/components/TodoItemsList";
-import {mapGetters} from "vuex";
+import {mapMutations, mapGetters} from "vuex";
 
 export default {
   name: "OverviewPage",
   components: {AddTodoItemCard, TodoItemsList},
-  computed: mapGetters(["itemsSortedByDate"])
+  computed: mapGetters(["itemsSortedByDate"]),
+  methods: mapMutations(["loadAllItems"]),
+  mounted() {
+    this.loadAllItems()
+  }
 }
 </script>
 
